@@ -161,3 +161,21 @@ ion-app {
 .c-global-content {
   padding: 10px 10px;
 }
+
+.header-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+  ion-card-title {
+    font-weight: 600;
+    color: #473874c7;
+  }
+
+  ion-button {
+    --border-radius: 8px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@ionic/angular/common",
+    "@ionic/angular"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "editor.formatOnSave": true,
+
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#406f30",
+    "titleBar.activeForeground": "#E5E9F2",
+    "statusBar.background": "#406f30",
+    "statusBar.foreground": "#E5E9F2",
+    "tab.activeBackground": "#909f84",
+    "tab.activeForeground": "#ECEFF4",
+    "tab.inactiveForeground": "#BCC0D080",
+    "tab.activeBorderTop": "#D08770"
+  }
+}

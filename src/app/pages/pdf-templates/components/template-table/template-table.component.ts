@@ -1,14 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { IonIcon, IonGrid, IonButton, IonRow, IonCol } from "@ionic/angular/standalone";
+import { IonIcon, IonGrid, IonButton, IonRow, IonCol, IonCardContent, IonCard, IonCardHeader, IonCardTitle } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-template-table',
   templateUrl: './template-table.component.html',
   styleUrls: ['./template-table.component.scss'],
   standalone: true,
-  imports: [IonCol, IonRow, IonButton,
+  imports: [
+    IonCardTitle,
+    IonCardHeader,
+    IonCard,
+    IonCardContent,
+    IonCol,
+    IonRow,
+    IonButton,
     CommonModule,
     IonGrid,
     IonIcon

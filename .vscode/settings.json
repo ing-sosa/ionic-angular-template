@@ -31,5 +31,8 @@
     "tab.activeForeground": "#ECEFF4",
     "tab.inactiveForeground": "#BCC0D080",
     "tab.activeBorderTop": "#D08770"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
   }
 }

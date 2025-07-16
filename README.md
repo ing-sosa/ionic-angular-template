@@ -1,4 +1,4 @@
-# 📄 Prueba Técnica 24 Horas: Módulo de Plantillas PDF Dinámicas
+# 📄 Prueba Técnica: Módulo de Plantillas PDF Dinámicas
 
 ## 🎯 **Objetivo Principal**
 Desarrollar un módulo para crear y gestionar plantillas PDF dinámicas que permita a los usuarios diseñar documentos profesionales con headers, footers y contenido paginado automáticamente.
@@ -16,7 +16,7 @@ Desarrollar un módulo para crear y gestionar plantillas PDF dinámicas que perm
    - Configurar **footer dinámico** con 1-4 columnas
    - Cada columna debe soportar:
      - Texto enriquecido (bold, italic, color, viñetas)
-     - Imágenes con control de dimensiones en centímetros
+     - Imágenes con control de dimensiones
    - Marca de agua opcional (imagen de fondo con opacidad y tamaño ajustable)
 
 3. **Generación de PDF**
@@ -28,7 +28,6 @@ Desarrollar un módulo para crear y gestionar plantillas PDF dinámicas que perm
 ### **Características Avanzadas (Puntos Extra)**
 - Numeración automática de páginas
 - Drag & drop para subir imágenes
-- Variables dinámicas (ej: `{{fecha}}`, `{{usuario}}`)
 - Responsive design para diferentes pantallas
 - Persistencia de datos (localStorage o backend)
 

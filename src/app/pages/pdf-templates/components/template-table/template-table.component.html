@@ -1,0 +1,24 @@
+<ion-grid>
+  <ion-row class="table-header">
+    <ion-col size="4">Nombre</ion-col>
+    <ion-col size="2">Formato</ion-col>
+    <ion-col size="2">Páginas</ion-col>
+    <ion-col size="4">Acciones</ion-col>
+  </ion-row>
+
+  <ion-row *ngFor="let template of templates">
+    <ion-col size="4">{{ template.name }}</ion-col>
+    <ion-col size="2">{{ template.type }}</ion-col>
+    <ion-col size="2">{{ template.pages }}</ion-col>
+    <ion-col size="4">
+      <ion-button size="small" color="primary" fill="clear">
+        <ion-icon slot="start" name="create-outline"></ion-icon>
+        Editar
+      </ion-button>
+      <ion-button size="small" color="danger" fill="clear">
+        <ion-icon slot="start" name="trash-outline"></ion-icon>
+        Eliminar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

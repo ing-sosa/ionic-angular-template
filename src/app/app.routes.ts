@@ -11,9 +11,15 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/welcome/welcome.page').then((m) => m.WelcomePage),
   },
+  {
+    path: 'pdf-templates',
+    loadComponent: () =>
+      import('./pages/pdf-templates/pdf-templates.component').then(m => m.PdfTemplatesComponent)
+  },
+
   // Redirects
   {
     path: '**',
-    redirectTo: 'welcome',
+    redirectTo: 'pdf-templates',
   },
 ];

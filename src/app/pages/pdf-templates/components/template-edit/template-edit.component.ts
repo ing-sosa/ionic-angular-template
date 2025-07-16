@@ -14,6 +14,8 @@ export class TemplateEditComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log('CREAR PLANTILLA');
+  }
 
 }

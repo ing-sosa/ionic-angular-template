@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonRouterOutlet } from '@ionic/angular/standalone';
 import { PdfTemplatesComponent } from '../pdf-templates/pdf-templates.component';
 import { Subject } from 'rxjs';
 
@@ -11,6 +11,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./welcome.page.scss'],
   standalone: true,
   imports: [
+    IonRouterOutlet,
     PdfTemplatesComponent,
     IonButton,
     IonContent,

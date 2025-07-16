@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IonNote, IonIcon, IonGrid, IonButton, IonRow, IonCol, IonCardContent, IonCard, IonCardHeader, IonCardTitle } from "@ionic/angular/standalone";
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-template-table',
@@ -9,6 +10,7 @@ import { IonNote, IonIcon, IonGrid, IonButton, IonRow, IonCol, IonCardContent, I
   styleUrls: ['./template-table.component.scss'],
   standalone: true,
   imports: [
+    RouterLink,
     IonNote,
     IonCardTitle,
     IonCardHeader,
@@ -41,10 +43,15 @@ export class TemplateTableComponent implements OnInit, OnDestroy {
     this.isMobile = window.innerWidth < 768;
   }
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() { }
 
+  goEdit(id: number) {
+    console.log('navegar');
+
+    this.router.navigate(['pdf-template/editar', id]);
+  }
 
   ngOnDestroy(): void {
     this.onDestroy$.next();

@@ -11,7 +11,7 @@ export class MenuService {
     // Sección de Dashboard
     dashboard: {
       title: 'Tablero',
-      url: '/welcome',
+      url: '/pdf-template',
       icon: 'grid',
     },
   };

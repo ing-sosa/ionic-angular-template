@@ -4,13 +4,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TemplateTableComponent } from './components/template-table/template-table.component';
 import { IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonIcon } from "@ionic/angular/standalone";
 import { Subject } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-pdf-templates',
   templateUrl: './pdf-templates.component.html',
   styleUrls: ['./pdf-templates.component.scss'],
   standalone: true,
-  imports: [IonIcon,
+  imports: [
+    RouterLink,
+    IonIcon,
     IonButton,
     IonCardTitle,
     IonCardHeader,

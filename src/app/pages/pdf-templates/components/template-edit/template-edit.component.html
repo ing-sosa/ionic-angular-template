@@ -1,7 +1,11 @@
 <div class="c-global-content">
+  <ion-card-header class="back-header-with-button">
+    <ion-button size="small" fill="clear" color="primary" [routerLink]="['pdf-template']">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
 
-  <p>
-    template-edit works!
-  </p>
-
+    <ion-card-title>
+      {{templateId ? 'Editar' : 'Crear'}} Plantillas PDF
+    </ion-card-title>
+  </ion-card-header>
 </div>

@@ -162,20 +162,32 @@ ion-app {
   padding: 55px 10px 55px 10px;
 }
 
+ion-title,
+ion-card-title {
+  font-weight: 600;
+  color: #473874c7;
+}
+
 .header-with-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
 
-  ion-card-title {
-    font-weight: 600;
-    color: #473874c7;
-  }
-
   ion-button {
     --border-radius: 8px;
     --padding-start: 12px;
     --padding-end: 12px;
+  }
+}
+
+.back-header-with-button {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+
+  ion-card-title {
+    margin: 0;
   }
 }

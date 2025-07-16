@@ -29,3 +29,22 @@ ion-card-title {
     margin-right: 4px;
   }
 }
+
+ion-grid {
+  @media (max-width: 768px) {
+
+    ion-col:nth-child(2),
+    ion-col:nth-child(3) {
+      display: none;
+    }
+  }
+}
+
+.template-card {
+  margin-bottom: 1rem;
+}
+
+.actions-mobile {
+  display: flex;
+  justify-content: flex-end;
+}

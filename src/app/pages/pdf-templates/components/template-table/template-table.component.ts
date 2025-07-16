@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { IonIcon, IonGrid, IonButton, IonRow, IonCol, IonCardContent, IonCard, IonCardHeader, IonCardTitle } from "@ionic/angular/standalone";
+import { IonNote, IonIcon, IonGrid, IonButton, IonRow, IonCol, IonCardContent, IonCard, IonCardHeader, IonCardTitle } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-template-table',
@@ -9,6 +9,7 @@ import { IonIcon, IonGrid, IonButton, IonRow, IonCol, IonCardContent, IonCard, I
   styleUrls: ['./template-table.component.scss'],
   standalone: true,
   imports: [
+    IonNote,
     IonCardTitle,
     IonCardHeader,
     IonCard,
@@ -27,8 +28,19 @@ export class TemplateTableComponent implements OnInit, OnDestroy {
   templates = [
     { id: 1, name: 'Plantilla Factura', type: 'Carta', pages: 1 },
     { id: 2, name: 'Plantilla Reporte', type: 'Media Carta', pages: 3 },
-    { id: 3, name: 'Plantilla Contrato', type: 'Carta', pages: 2 }
+    { id: 3, name: 'Plantilla Contrato', type: 'Carta', pages: 2 },
+    { id: 1, name: 'Plantilla Factura', type: 'Carta', pages: 1 },
+    { id: 2, name: 'Plantilla Reporte', type: 'Media Carta', pages: 3 },
+    { id: 3, name: 'Plantilla Contrato', type: 'Carta', pages: 2 },
   ];
+
+  isMobile = window.innerWidth < 768;
+
+  @HostListener('window:resize')
+  onResize() {
+    this.isMobile = window.innerWidth < 768;
+  }
+
   constructor() { }
 
   ngOnInit() { }

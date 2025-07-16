@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TemplateModalComponent } from './template-modal.component';
+import { TemplateEditComponent } from './template-edit.component';
 
-describe('TemplateModalComponent', () => {
-  let component: TemplateModalComponent;
-  let fixture: ComponentFixture<TemplateModalComponent>;
+describe('TemplateEditComponent', () => {
+  let component: TemplateEditComponent;
+  let fixture: ComponentFixture<TemplateEditComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TemplateModalComponent ],
+      declarations: [ TemplateEditComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TemplateModalComponent);
+    fixture = TestBed.createComponent(TemplateEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -5,15 +5,13 @@
       <ion-grid>
         <ion-row class="table-header">
           <ion-col size="4">Nombre</ion-col>
-          <ion-col size="3">Formato</ion-col>
-          <ion-col size="2">Páginas</ion-col>
+          <ion-col size="3">Tamaño de página</ion-col>
           <ion-col size="3">Acciones</ion-col>
         </ion-row>
 
         <ion-row *ngFor="let template of templates" class="table-row">
           <ion-col size="4">{{ template.name }}</ion-col>
-          <ion-col size="3">{{ template.type }}</ion-col>
-          <ion-col size="2">{{ template.pages }}</ion-col>
+          <ion-col size="3">{{ template.pageSize }}</ion-col>
           <ion-col size="3" class="actions">
             <ion-button size="small" fill="clear" color="primary" [routerLink]="['editar', template.id]">
               <ion-icon slot="icon-only" name="create-outline"></ion-icon>
@@ -31,7 +29,7 @@
       <ion-card *ngFor="let template of templates" class="template-card">
         <ion-card-header>
           <ion-card-title>{{ template.name }}</ion-card-title>
-          <ion-note>{{ template.type }} • {{ template.pages }} páginas</ion-note>
+          <ion-note>{{ template.pageSize }}</ion-note>
         </ion-card-header>
         <ion-card-content class="actions-mobile">
           <ion-button size="small" fill="clear" color="primary" [routerLink]="['editar', template.id]">

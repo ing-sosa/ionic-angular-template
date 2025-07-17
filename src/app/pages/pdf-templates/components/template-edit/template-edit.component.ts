@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCardContent, IonCard, IonItem, IonLabel, IonRange, IonSegmentButton, IonSegment, IonContent, IonToolbar, IonGrid, IonRow, IonCol, IonToggle, IonInput, IonCheckbox, IonRadioGroup, IonRadio, IonImg, IonTitle, IonHeader, IonButtons, IonFooter } from "@ionic/angular/standalone";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-template-edit',
@@ -38,7 +39,8 @@ import html2canvas from 'html2canvas';
     ReactiveFormsModule
   ]
 })
-export class TemplateEditComponent implements OnInit {
+export class TemplateEditComponent implements OnInit, OnDestroy {
+  private onDestroy$ = new Subject<void>();
 
   templateId: string = '';
   useImage: boolean = false;
@@ -47,18 +49,16 @@ export class TemplateEditComponent implements OnInit {
 
   watermark = new FormControl<boolean>(true);
 
-  isDragOver = false;
+  isDragOver: boolean = false;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.templateId = params.get('id') ?? ''
-    })
+    this.route.paramMap.subscribe(params => this.templateId = params.get('id') ?? '')
 
     this.templateForm = this.fb.group({
-      name: ['Plantilla para cobro de piso'],
-      pageSize: ['carta'],
+      name: [''],
+      pageSize: [''],
       header: this.fb.array([
         this.createColumn()
       ]),
@@ -66,18 +66,12 @@ export class TemplateEditComponent implements OnInit {
         this.createColumn()
       ]),
       watermark: this.fb.group({
-        opacity: [0.5],
-        width: [200],
-        height: [200],
+        opacity: [0],
+        width: [0],
+        height: [0],
         image: ['']
       })
     });
-  }
-
-  createEmptyColumns(length: number) {
-    const maxColumns = 4;
-    const emptyCount = maxColumns - length;
-    return Array(emptyCount > 0 ? emptyCount : 0);
   }
 
   createColumn() {
@@ -124,11 +118,11 @@ export class TemplateEditComponent implements OnInit {
   }
 
   logForm() {
-    console.log(this.templateForm.value);
+    localStorage.setItem('plantillaPDF', JSON.stringify(this.templateForm.value));
   }
 
   pinOpacity(value: number) {
-    return `${value}`;
+    return value;
   }
 
   onDragOver(event: DragEvent) {
@@ -137,44 +131,30 @@ export class TemplateEditComponent implements OnInit {
 
   onFileDropped(event: DragEvent, col: AbstractControl) {
     event.preventDefault();
-    if (event.dataTransfer?.files?.length) {
-      this.convertFileToBase64(event.dataTransfer.files[0], col);
-    }
+    if (event.dataTransfer?.files?.length) this.convertFileToBase64(event.dataTransfer.files[0], col);
   }
 
   onFileSelected(event: any, col: AbstractControl) {
     const file = event.target.files[0];
-    if (file) {
-      this.convertFileToBase64(file, col);
-    }
+    if (file) this.convertFileToBase64(file, col);
   }
 
   convertFileToBase64(file: File, col: AbstractControl) {
     const reader = new FileReader();
-    reader.onload = () => {
-      col.get('content')?.setValue(reader.result as string);
-    };
+    reader.onload = () => col.get('content')?.setValue(reader.result as string);
     reader.readAsDataURL(file);
-  }
-
-  onToggleChange(ev: any) {
-    console.log('Nuevo valor:', ev.detail.value);
   }
 
   onFileDroppedWatermark(event: DragEvent) {
     event.preventDefault();
     const file = event.dataTransfer?.files[0];
-    if (file) {
-      this.readFile(file);
-    }
+    if (file) this.readFile(file);
   }
 
   onFileSelectedWatermark(event: Event) {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
-    if (file) {
-      this.readFile(file);
-    }
+    if (file) this.readFile(file);
   }
 
   readFile(file: File) {
@@ -182,7 +162,9 @@ export class TemplateEditComponent implements OnInit {
       console.error('El archivo no es una imagen');
       return;
     }
+
     const reader = new FileReader();
+
     reader.onload = () => {
       const base64 = reader.result as string;
       this.watermarkGroup.get('image')?.setValue(base64);
@@ -192,10 +174,6 @@ export class TemplateEditComponent implements OnInit {
 
   exportPDF() {
     const data = document.querySelector('.c-content-pdf') as HTMLElement;
-    if (!data) {
-      console.error('No se encontró el contenedor para exportar');
-      return;
-    }
 
     html2canvas(data, {
       scale: 3,
@@ -220,5 +198,8 @@ export class TemplateEditComponent implements OnInit {
     });
   }
 
-
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
 }

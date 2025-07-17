@@ -312,3 +312,25 @@ ion-card-title {
 ::placeholder {
   font-size: 12px;
 }
+
+.drag-drop {
+  p {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  >div {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 200px;
+    }
+  }
+}
+
+.imege-measures {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}

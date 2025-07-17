@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCardContent, IonCard, IonItem, IonLabel, IonRange, IonSegmentButton, IonSegment, IonContent, IonToolbar, IonGrid, IonRow, IonCol, IonToggle, IonInput, IonCheckbox, IonRadioGroup, IonRadio, IonImg, IonTitle, IonHeader, IonButtons, IonFooter } from "@ionic/angular/standalone";
 
@@ -123,6 +123,31 @@ export class TemplateEditComponent implements OnInit {
     return `${value}`;
   }
 
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onFileDropped(event: DragEvent, col: AbstractControl) {
+    event.preventDefault();
+    if (event.dataTransfer?.files?.length) {
+      this.convertFileToBase64(event.dataTransfer.files[0], col);
+    }
+  }
+
+  onFileSelected(event: any, col: AbstractControl) {
+    const file = event.target.files[0];
+    if (file) {
+      this.convertFileToBase64(file, col);
+    }
+  }
+
+  convertFileToBase64(file: File, col: AbstractControl) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      col.get('content')?.setValue(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  }
 
   onToggleChange(ev: any) {
     console.log('Nuevo valor:', ev.detail.value);

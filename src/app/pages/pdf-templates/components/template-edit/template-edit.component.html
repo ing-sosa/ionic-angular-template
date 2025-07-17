@@ -53,7 +53,8 @@
                     <ion-card-title>Encabezado</ion-card-title>
                   </ion-col>
                   <ion-col>
-                    <ion-button size="small" color="primary" (click)="addHeaderColumn()">
+                    <ion-button size="small" color="primary" (click)="addHeaderColumn()"
+                      *ngIf="headerColumns.controls.length <= 3">
                       <ion-icon slot="start" name="add-circle-outline"></ion-icon>
                       Agregar
                     </ion-button>
@@ -78,7 +79,8 @@
                           </ion-segment-button>
                         </ion-segment>
 
-                        <ion-button size="small" fill="clear" color="danger" (click)="removeHeaderColumn(i)">
+                        <ion-button *ngIf="headerColumns.controls.length >1" size="small" fill="clear" color="danger"
+                          (click)="removeHeaderColumn(i)">
                           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
                         </ion-button>
                       </ion-col>
@@ -86,41 +88,67 @@
                   </ion-grid>
                 </ion-card-header>
 
-                <ion-card-content>
-                  <ion-item *ngIf="col.get('type')?.value === 'text'">
-                    <ion-label position="stacked">Texto</ion-label>
-                    <ion-input formControlName="content" placeholder="Escribe aquí..."></ion-input>
-                  </ion-item>
+                <div>
+                  <ion-card-content *ngIf="col.get('type')?.value === 'text'">
+                    <ion-item>
+                      <ion-label position="stacked">Texto</ion-label>
+                      <ion-input formControlName="content" placeholder="Escribe aquí..."></ion-input>
+                    </ion-item>
 
-                  <ion-grid formGroupName="styles">
-                    <ion-row>
-                      <ion-col size="6" size-md="3">
-                        <ion-item lines="none">
-                          <ion-label>Bold</ion-label>
-                          <ion-checkbox formControlName="bold" slot="start"></ion-checkbox>
-                        </ion-item>
-                      </ion-col>
-                      <ion-col size="6" size-md="3">
-                        <ion-item lines="none">
-                          <ion-label>Italic</ion-label>
-                          <ion-checkbox formControlName="italic" slot="start"></ion-checkbox>
-                        </ion-item>
-                      </ion-col>
-                      <ion-col size="6" size-md="3">
-                        <ion-item lines="none">
-                          <ion-label>Viñeta</ion-label>
-                          <ion-checkbox formControlName="bullet" slot="start"></ion-checkbox>
-                        </ion-item>
-                      </ion-col>
-                      <ion-col size="6" size-md="3">
-                        <ion-item lines="none">
-                          <ion-label>Color</ion-label>
-                          <input formControlName="color" type="color" style="margin-left: 8px;">
-                        </ion-item>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-card-content>
+                    <ion-grid formGroupName="styles">
+                      <ion-row>
+                        <ion-col size="6" size-md="3">
+                          <ion-item lines="none">
+                            <ion-label>Bold</ion-label>
+                            <ion-checkbox formControlName="bold" slot="start"></ion-checkbox>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col size="6" size-md="3">
+                          <ion-item lines="none">
+                            <ion-label>Italic</ion-label>
+                            <ion-checkbox formControlName="italic" slot="start"></ion-checkbox>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col size="6" size-md="3">
+                          <ion-item lines="none">
+                            <ion-label>Viñeta</ion-label>
+                            <ion-checkbox formControlName="bullet" slot="start"></ion-checkbox>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col size="6" size-md="3">
+                          <ion-item lines="none">
+                            <ion-label>Color</ion-label>
+                            <input formControlName="color" type="color" style="margin-left: 8px;">
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-card-content>
+
+                  <ion-card-content *ngIf="col.get('type')?.value === 'image'">
+                    <div class="drag-drop" (drop)="onFileDropped($event, col)" (dragover)="onDragOver($event)">
+                      <p>Arrastra y suelta aquí o haz clic para seleccionar</p>
+                      <input type="file" hidden (change)="onFileSelected($event, col)" #fileInput>
+                      <ion-button expand="block" (click)="fileInput.click()">Seleccionar Imagen</ion-button>
+                      <div>
+                        <img *ngIf="col.get('content')?.value" [src]="col.get('content')?.value"
+                          style="max-width:100%; margin-top:8px;">
+                      </div>
+                    </div>
+
+                    <div formGroupName="styles" class="imege-measures">
+                      <ion-item>
+                        <ion-label position="stacked">Alto</ion-label>
+                        <ion-input type="number" placeholder="Alto (px)" formControlName="height"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label position="stacked">Ancho</ion-label>
+                        <ion-input type="number" placeholder="Ancho (px)" formControlName="width"></ion-input>
+                      </ion-item>
+                    </div>
+                  </ion-card-content>
+                </div>
+
               </ion-card>
 
             </ion-col>
@@ -132,7 +160,8 @@
                     <ion-card-title>Pïe de página</ion-card-title>
                   </ion-col>
                   <ion-col>
-                    <ion-button size="small" color="primary" (click)="addFooterColumn()">
+                    <ion-button size="small" color="primary" (click)="addFooterColumn()"
+                      *ngIf="footerColumns.controls.length <= 3">
                       <ion-icon slot="start" name="add-circle-outline"></ion-icon>
                       Agregar
                     </ion-button>
@@ -158,7 +187,8 @@
                           </ion-segment-button>
                         </ion-segment>
 
-                        <ion-button size="small" fill="clear" color="danger" (click)="removeFooterColumn(i)">
+                        <ion-button *ngIf="footerColumns.controls.length >1" size="small" fill="clear" color="danger"
+                          (click)="removeFooterColumn(i)">
                           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
                         </ion-button>
                       </ion-col>
@@ -166,42 +196,68 @@
                   </ion-grid>
                 </ion-card-header>
 
-                <ion-card-content>
-                  <ion-item *ngIf="col.get('type')?.value === 'text'">
-                    <ion-label position="stacked">Texto</ion-label>
-                    <ion-input formControlName="content" placeholder="Escribe aquí..."></ion-input>
-                  </ion-item>
+                <div>
 
-                  <ion-grid formGroupName="styles">
-                    <ion-row>
-                      <ion-col size="6" size-md="3">
-                        <ion-item lines="none">
-                          <ion-label>Bold</ion-label>
-                          <ion-checkbox formControlName="bold" slot="start"></ion-checkbox>
-                        </ion-item>
-                      </ion-col>
-                      <ion-col size="6" size-md="3">
-                        <ion-item lines="none">
-                          <ion-label>Italic</ion-label>
-                          <ion-checkbox formControlName="italic" slot="start"></ion-checkbox>
-                        </ion-item>
-                      </ion-col>
-                      <ion-col size="6" size-md="3">
-                        <ion-item lines="none">
-                          <ion-label>Viñeta</ion-label>
-                          <ion-checkbox formControlName="bullet" slot="start"></ion-checkbox>
-                        </ion-item>
-                      </ion-col>
-                      <ion-col size="6" size-md="3">
-                        <ion-item lines="none" class="ion-align-items-center">
-                          <input type="color" formControlName="color"
-                            style="margin-left: 8px; height: 30px; width: 100%;" />
-                          <ion-label style="margin-left: 8px;">Color</ion-label>
-                        </ion-item>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-card-content>
+                  <ion-card-content *ngIf="col.get('type')?.value === 'text'">
+                    <ion-item>
+                      <ion-label position="stacked">Texto</ion-label>
+                      <ion-input formControlName="content" placeholder="Escribe aquí..."></ion-input>
+                    </ion-item>
+
+                    <ion-grid formGroupName="styles">
+                      <ion-row>
+                        <ion-col size="6" size-md="3">
+                          <ion-item lines="none">
+                            <ion-label>Bold</ion-label>
+                            <ion-checkbox formControlName="bold" slot="start"></ion-checkbox>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col size="6" size-md="3">
+                          <ion-item lines="none">
+                            <ion-label>Italic</ion-label>
+                            <ion-checkbox formControlName="italic" slot="start"></ion-checkbox>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col size="6" size-md="3">
+                          <ion-item lines="none">
+                            <ion-label>Viñeta</ion-label>
+                            <ion-checkbox formControlName="bullet" slot="start"></ion-checkbox>
+                          </ion-item>
+                        </ion-col>
+                        <ion-col size="6" size-md="3">
+                          <ion-item lines="none">
+                            <ion-label>Color</ion-label>
+                            <input formControlName="color" type="color" style="margin-left: 8px;">
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-card-content>
+
+                  <ion-card-content *ngIf="col.get('type')?.value === 'image'">
+                    <div class="drag-drop" (drop)="onFileDropped($event, col)" (dragover)="onDragOver($event)">
+                      <p>Arrastra y suelta aquí o haz clic para seleccionar</p>
+                      <input type="file" hidden (change)="onFileSelected($event, col)" #fileInput>
+                      <ion-button expand="block" (click)="fileInput.click()">Seleccionar Imagen</ion-button>
+                      <div>
+                        <img *ngIf="col.get('content')?.value" [src]="col.get('content')?.value"
+                          style="max-width:100%; margin-top:8px;">
+                      </div>
+                    </div>
+
+                    <div formGroupName="styles" class="imege-measures">
+                      <ion-item>
+                        <ion-label position="stacked">Alto</ion-label>
+                        <ion-input type="number" placeholder="Alto (px)" formControlName="height"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label position="stacked">Ancho</ion-label>
+                        <ion-input type="number" placeholder="Ancho (px)" formControlName="width"></ion-input>
+                      </ion-item>
+                    </div>
+                  </ion-card-content>
+                </div>
+
               </ion-card>
             </ion-col>
 

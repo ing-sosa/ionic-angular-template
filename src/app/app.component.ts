@@ -125,6 +125,9 @@ import {
   eyeSharp,
   swapVerticalSharp,
   peopleCircleOutline,
+  arrowBackOutline,
+  removeCircleOutline,
+  arrowDownCircleOutline,
 } from 'ionicons/icons';
 import { filter, Subscription } from 'rxjs';
 import { version } from './commons/constants';
@@ -182,8 +185,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private registerIcons() {
     addIcons({
+      arrowBackOutline,
       accessibilityOutline,
       add,
+      removeCircleOutline,
+      arrowDownCircleOutline,
       addCircleOutline,
       alertCircleOutline,
       analyticsOutline,
@@ -318,16 +324,16 @@ export class AppComponent implements OnInit, OnDestroy {
       });
 
     // Establecer la ruta inicial
-    this.selectedPath = this.router.url || '/welcome';
+    this.selectedPath = this.router.url || '/pdf-template';
 
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {});
+      .subscribe(() => { });
   }
   @HostListener('document:click')
   @HostListener('document:touchstart')
   @HostListener('document:keydown')
-  async onUserInteraction() {}
+  async onUserInteraction() { }
 
   ngOnDestroy() {
     // Limpiar las suscripciones para evitar fugas de memoria

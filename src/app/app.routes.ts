@@ -1,19 +1,25 @@
+// app.routing.ts
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'welcome',
-    redirectTo: 'login',
-    pathMatch: 'full',
+    path: 'pdf-template',
+    loadComponent: () =>
+      import('./pages/pdf-templates/pdf-templates.component').then(m => m.PdfTemplatesComponent),
   },
   {
-    path: 'welcome',
+    path: 'pdf-template/crear',
     loadComponent: () =>
-      import('./pages/welcome/welcome.page').then((m) => m.WelcomePage),
+      import('./pages/pdf-templates/components/template-edit/template-edit.component').then(m => m.TemplateEditComponent),
   },
-  // Redirects
+  {
+    path: 'pdf-template/editar/:id',
+    loadComponent: () =>
+      import('./pages/pdf-templates/components/template-edit/template-edit.component').then(m => m.TemplateEditComponent),
+  },
+
   {
     path: '**',
-    redirectTo: 'welcome',
+    redirectTo: 'pdf-template',
   },
 ];

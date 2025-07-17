@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCardContent, IonCard, IonItem, IonLabel, IonRange, IonSegmentButton, IonSegment, IonContent, IonToolbar, IonGrid, IonRow, IonCol, IonToggle, IonInput, IonCheckbox, IonRadioGroup, IonRadio } from "@ionic/angular/standalone";
+import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCardContent, IonCard, IonItem, IonLabel, IonRange, IonSegmentButton, IonSegment, IonContent, IonToolbar, IonGrid, IonRow, IonCol, IonToggle, IonInput, IonCheckbox, IonRadioGroup, IonRadio, IonImg } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-template-edit',
   templateUrl: './template-edit.component.html',
   styleUrls: ['./template-edit.component.scss'],
   standalone: true,
-  imports: [IonRadio, IonRadioGroup, IonCheckbox,
+  imports: [IonImg, IonRadio, IonRadioGroup, IonCheckbox,
     IonInput,
     IonToggle,
     IonCol,

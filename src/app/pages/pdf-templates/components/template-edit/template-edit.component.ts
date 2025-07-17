@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCardContent, IonCard, IonItem, IonLabel, IonRange, IonSegmentButton, IonSegment, IonContent, IonToolbar, IonGrid, IonRow, IonCol, IonToggle, IonInput, IonCheckbox, IonRadioGroup, IonRadio, IonImg } from "@ionic/angular/standalone";
+import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCardContent, IonCard, IonItem, IonLabel, IonRange, IonSegmentButton, IonSegment, IonContent, IonToolbar, IonGrid, IonRow, IonCol, IonToggle, IonInput, IonCheckbox, IonRadioGroup, IonRadio, IonImg, IonTitle, IonHeader, IonButtons, IonFooter } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-template-edit',
   templateUrl: './template-edit.component.html',
   styleUrls: ['./template-edit.component.scss'],
   standalone: true,
-  imports: [IonImg, IonRadio, IonRadioGroup, IonCheckbox,
+  imports: [IonFooter, IonButtons, IonHeader, IonTitle, IonImg, IonRadio, IonRadioGroup, IonCheckbox,
     IonInput,
     IonToggle,
     IonCol,
@@ -38,6 +38,7 @@ import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, Ion
 export class TemplateEditComponent implements OnInit {
   templateId: string = '';
   useImage: boolean = false;
+  watermark: boolean = false;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -48,6 +49,11 @@ export class TemplateEditComponent implements OnInit {
 
     console.log('CREAR PLANTILLA');
   }
+
+  pinOpacity(value: number) {
+    return `${value}`;
+  }
+
 
   onToggleChange(ev: any) {
     console.log('Nuevo valor:', ev.detail.value);

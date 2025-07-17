@@ -126,6 +126,8 @@ import {
   swapVerticalSharp,
   peopleCircleOutline,
   arrowBackOutline,
+  removeCircleOutline,
+  arrowDownCircleOutline,
 } from 'ionicons/icons';
 import { filter, Subscription } from 'rxjs';
 import { version } from './commons/constants';
@@ -186,6 +188,8 @@ export class AppComponent implements OnInit, OnDestroy {
       arrowBackOutline,
       accessibilityOutline,
       add,
+      removeCircleOutline,
+      arrowDownCircleOutline,
       addCircleOutline,
       alertCircleOutline,
       analyticsOutline,

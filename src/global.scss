@@ -159,7 +159,7 @@ ion-app {
 }
 
 .c-global-content {
-  padding: 55px 10px 55px 10px;
+  padding: 55px 10px 55px 10px !important;
 }
 
 ion-title,
@@ -256,17 +256,57 @@ ion-card-title {
   }
 }
 
+.border-none {
+  border: none !important;
+}
 
 .watermark {
+  ion-item {}
+
+  .range-group {
+    display: flex;
+    margin-bottom: 20px;
+
+    >ion-label {
+      width: 70px;
+    }
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  ion-card-header {
+    padding: 10px 15px;
+
+    ion-row {
+      ion-col {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+    }
+  }
+
   ion-col:nth-child(2) {
     display: flex;
-    justify-content: center;
+    justify-content: end;
 
     img {
       width: 300px;
       margin: auto;
     }
   }
+}
+
+.c-content-pdf {
+  border: 1px solid #473874c7;
+  height: 500px;
+}
+
+.btns-actions {
+  display: flex;
+  justify-content: space-between;
 }
 
 ::placeholder {

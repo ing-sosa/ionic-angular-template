@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TemplateTableComponent } from './components/template-table/template-table.component';
-import { IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonIcon } from "@ionic/angular/standalone";
+import { IonCardHeader, IonCardTitle, IonCardContent, IonButton, IonIcon, IonContent, IonHeader, IonToolbar, IonTitle, IonButtons } from "@ionic/angular/standalone";
 import { Subject } from 'rxjs';
 import { RouterLink } from '@angular/router';
 
@@ -12,6 +12,11 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./pdf-templates.component.scss'],
   standalone: true,
   imports: [
+    IonButtons,
+    IonTitle,
+    IonToolbar,
+    IonHeader,
+    IonContent,
     RouterLink,
     IonIcon,
     IonButton,

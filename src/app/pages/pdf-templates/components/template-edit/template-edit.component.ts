@@ -189,4 +189,36 @@ export class TemplateEditComponent implements OnInit {
     };
     reader.readAsDataURL(file);
   }
+
+  exportPDF() {
+    const data = document.querySelector('.c-content-pdf') as HTMLElement;
+    if (!data) {
+      console.error('No se encontró el contenedor para exportar');
+      return;
+    }
+
+    html2canvas(data, {
+      scale: 3,
+      useCORS: true
+    }).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: 'a4'
+      });
+
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      const ratio = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+      const imgWidth = canvas.width * ratio;
+      const imgHeight = canvas.height * ratio;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save('plantilla.pdf');
+    });
+  }
+
+
 }

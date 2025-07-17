@@ -261,8 +261,6 @@ ion-card-title {
 }
 
 .watermark {
-  ion-item {}
-
   .range-group {
     display: flex;
     margin-bottom: 20px;
@@ -290,11 +288,11 @@ ion-card-title {
 
   ion-col:nth-child(2) {
     display: flex;
-    justify-content: end;
+    justify-content: center;
 
     img {
+      margin: 10px;
       width: 300px;
-      margin: auto;
     }
   }
 }
@@ -314,6 +312,11 @@ ion-card-title {
 }
 
 .drag-drop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   p {
     text-align: center;
     margin-bottom: 10px;
@@ -321,9 +324,10 @@ ion-card-title {
 
   >div {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
 
     img {
+      margin-top: 10px;
       width: 200px;
     }
   }

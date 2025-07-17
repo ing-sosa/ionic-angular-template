@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCardContent, IonCard, IonItem, IonLabel, IonRange, IonSegmentButton, IonSegment, IonContent, IonToolbar, IonGrid, IonRow, IonCol, IonToggle, IonInput, IonCheckbox, IonRadioGroup, IonRadio, IonImg, IonTitle, IonHeader, IonButtons, IonFooter } from "@ionic/angular/standalone";
 
@@ -39,10 +39,12 @@ import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, Ion
 export class TemplateEditComponent implements OnInit {
   templateId: string = '';
   useImage: boolean = false;
-  watermark: boolean = false;
 
   templateForm!: FormGroup;
 
+  watermark = new FormControl<boolean>(true);
+
+  isDragOver = false;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder) { }
 
@@ -61,25 +63,24 @@ export class TemplateEditComponent implements OnInit {
         this.createColumn()
       ]),
       watermark: this.fb.group({
-        enabled: [false],
         opacity: [0.5],
         width: [200],
         height: [200],
-        image: [''] // base64 o path
+        image: ['']
       })
     });
   }
 
   createColumn(): FormGroup {
     return this.fb.group({
-      type: ['text'], // text o image
+      type: ['text'],
       content: [''],
       styles: this.fb.group({
         bold: [false],
         italic: [false],
         bullet: [false],
         color: ['#000000'],
-        width: [100], // solo si es imagen
+        width: [100],
         height: [100]
       })
     });
@@ -97,7 +98,6 @@ export class TemplateEditComponent implements OnInit {
     return this.templateForm.get('watermark') as FormGroup;
   }
 
-
   addHeaderColumn() {
     this.headerColumns.push(this.createColumn());
   }
@@ -114,7 +114,6 @@ export class TemplateEditComponent implements OnInit {
     this.footerColumns.removeAt(index);
   }
 
-  // Útil para debug:
   logForm() {
     console.log(this.templateForm.value);
   }
@@ -151,5 +150,34 @@ export class TemplateEditComponent implements OnInit {
 
   onToggleChange(ev: any) {
     console.log('Nuevo valor:', ev.detail.value);
+  }
+
+  onFileDroppedWatermark(event: DragEvent) {
+    event.preventDefault();
+    const file = event.dataTransfer?.files[0];
+    if (file) {
+      this.readFile(file);
+    }
+  }
+
+  onFileSelectedWatermark(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (file) {
+      this.readFile(file);
+    }
+  }
+
+  readFile(file: File) {
+    if (!file.type.startsWith('image/')) {
+      console.error('El archivo no es una imagen');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = reader.result as string;
+      this.watermarkGroup.get('image')?.setValue(base64);
+    };
+    reader.readAsDataURL(file);
   }
 }

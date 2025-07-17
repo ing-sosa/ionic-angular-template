@@ -8,4 +8,166 @@
       {{templateId ? 'Editar' : 'Crear'}} Plantillas PDF
     </ion-card-title>
   </ion-card-header>
+
+  <ion-card class="editor-header">
+    <ion-card-header>
+      <ion-card-title>Configuración de Plantilla</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-item>
+              <ion-label position="stacked">Título de la Plantilla</ion-label>
+              <ion-input placeholder="Escribe aquí..."></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="12" size-md="6">
+            <ion-item>
+              <ion-label position="stacked">Tamaño de página</ion-label>
+              <ion-select placeholder="Selecciona tamaño">
+                <ion-select-option value="carta">Carta</ion-select-option>
+                <ion-select-option value="media-carta">Media carta</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card-header>
+              <ion-card-title>Header</ion-card-title>
+            </ion-card-header>
+            <ion-card class="card-cols-pdf">
+              <ion-card-header>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-card-title>Columna 1</ion-card-title>
+                    </ion-col>
+                    <ion-col>
+                      <ion-segment [scrollable]="true" value="heart">
+                        <ion-segment-button value="text">
+                          <ion-label>Texto</ion-label>
+                        </ion-segment-button>
+                        <ion-segment-button value="image">
+                          <ion-label>Imagen</ion-label>
+                        </ion-segment-button>
+                      </ion-segment>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-item>
+                  <ion-label position="stacked">Texto</ion-label>
+                  <ion-input placeholder="Escribe aquí..."></ion-input>
+                </ion-item>
+
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="3">
+                      <ion-item lines="none">
+                        <ion-label>Bold</ion-label>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-item lines="none">
+                        <ion-label>Italic</ion-label>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-item lines="none">
+                        <ion-label>Viñeta</ion-label>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-item lines="none">
+                        <input type="color">
+                        <ion-label>Color</ion-label>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+
+          </ion-col>
+          <ion-col size="6">
+            <ion-card-header>
+              <ion-card-title>Footer</ion-card-title>
+            </ion-card-header>
+            <ion-card class="card-cols-pdf">
+              <ion-card-header>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-card-title>Columna 1</ion-card-title>
+                    </ion-col>
+                    <ion-col>
+                      <ion-segment [scrollable]="true" value="heart">
+                        <ion-segment-button value="text">
+                          <ion-label>Texto</ion-label>
+                        </ion-segment-button>
+                        <ion-segment-button value="image">
+                          <ion-label>Imagen</ion-label>
+                        </ion-segment-button>
+                      </ion-segment>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-item>
+                  <ion-label position="stacked">Texto</ion-label>
+                  <ion-input placeholder="Escribe aquí..."></ion-input>
+                </ion-item>
+
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="3">
+                      <ion-item lines="none">
+                        <ion-label>Bold</ion-label>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-item lines="none">
+                        <ion-label>Italic</ion-label>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-item lines="none">
+                        <ion-label>Viñeta</ion-label>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                      <ion-item lines="none">
+                        <input type="color">
+                        <ion-label>Color</ion-label>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </div>

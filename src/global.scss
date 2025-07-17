@@ -338,3 +338,43 @@ ion-card-title {
   justify-content: center;
   gap: 20px;
 }
+
+.c-content-pdf {
+  background: white;
+  padding: 20px;
+  color: black;
+  height: auto;
+  min-height: 400px;
+
+  h1 {
+    font-size: 20px;
+    margin: 20px 0 0 0;
+    color: #414142c7;
+    font-weight: 600;
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #414142c7;
+    padding-bottom: 10px;
+
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: capitalize;
+
+      span {
+        color: #414142c7;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 0 0 30px 0;
+  }
+}

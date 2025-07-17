@@ -328,7 +328,67 @@
         <ion-grid>
           <ion-row>
             <ion-col size="12">
-              <div class="c-content-pdf">
+              <div class="c-content-pdf" [ngStyle]="{
+                  'background-image': 'url(' + templateForm.get('watermark')?.value.image + ')',
+                  'background-repeat': 'no-repeat',
+                  'background-position': 'center',
+                  'background-size': 
+                      templateForm.get('watermark')?.value.width + 'px ' + 
+                      templateForm.get('watermark')?.value.height + 'px',
+                }">
+                <div class="info">
+                  <h1>Titulo: <span>{{templateForm.get('name')?.value}}</span></h1>
+                  <h1>Tamaño: <span>{{templateForm.get('pageSize')?.value}}</span></h1>
+                </div>
+
+
+                <h1>Cabecera:</h1>
+                <div class="header">
+                  <ng-container *ngFor="let col of templateForm.value.header">
+                    <div [ngStyle]="{
+                      'font-weight': col.styles.bold ? 'bold' : 'normal',
+                      'font-style': col.styles.italic ? 'italic' : 'normal',
+                      'color': col.styles.color,
+                      'list-style-type': col.styles.bullet ? 'disc' : 'none',
+                      'padding-left': col.styles.bullet ? '1rem' : '0',
+                      'padding': '0.5rem',
+                      'height': col.styles.height + 'px'
+                    }">
+                      <ng-container *ngIf="col.type === 'text'">
+                        {{ col.content || '(sin contenido)' }}
+                      </ng-container>
+
+                      <ng-container *ngIf="col.type === 'image'">
+                        <img *ngIf="col.type === 'image'" [src]="col.content" [style.width.px]="col.styles.width"
+                          [style.height.px]="col.styles.height">
+                      </ng-container>
+                    </div>
+                  </ng-container>
+                </div>
+
+                <h1>Pie de página:</h1>
+                <div class="header">
+                  <ng-container *ngFor="let col of templateForm.value.footer">
+                    <div [ngStyle]="{
+                      'font-weight': col.styles.bold ? 'bold' : 'normal',
+                      'font-style': col.styles.italic ? 'italic' : 'normal',
+                      'color': col.styles.color,
+                      'list-style-type': col.styles.bullet ? 'disc' : 'none',
+                      'padding-left': col.styles.bullet ? '1rem' : '0',
+                      'padding': '0.5rem',
+                      'height': col.styles.height + 'px'
+                    }">
+                      <ng-container *ngIf="col.type === 'text'">
+                        {{ col.content || '(sin contenido)' }}
+                      </ng-container>
+
+                      <ng-container *ngIf="col.type === 'image'">
+                        <img *ngIf="col.type === 'image'" [src]="col.content" [style.width.px]="col.styles.width"
+                          [style.height.px]="col.styles.height">
+                      </ng-container>
+                    </div>
+                  </ng-container>
+                </div>
               </div>
             </ion-col>
           </ion-row>
@@ -353,5 +413,4 @@
       </ion-toolbar>
     </ion-footer>
   </ion-content>
-
 </form>

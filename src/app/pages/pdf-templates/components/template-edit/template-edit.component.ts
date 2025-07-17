@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonCardContent, IonCard, IonItem, IonLabel, IonRange, IonSegmentButton, IonSegment, IonContent, IonToolbar, IonGrid, IonRow, IonCol, IonToggle, IonInput, IonCheckbox, IonRadioGroup, IonRadio, IonImg, IonTitle, IonHeader, IonButtons, IonFooter } from "@ionic/angular/standalone";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-template-edit',
@@ -37,6 +39,7 @@ import { IonSelectOption, IonSelect, IonCardHeader, IonCardTitle, IonButton, Ion
   ]
 })
 export class TemplateEditComponent implements OnInit {
+
   templateId: string = '';
   useImage: boolean = false;
 
@@ -54,7 +57,7 @@ export class TemplateEditComponent implements OnInit {
     })
 
     this.templateForm = this.fb.group({
-      name: [''],
+      name: ['Plantilla para cobro de piso'],
       pageSize: ['carta'],
       header: this.fb.array([
         this.createColumn()
@@ -71,7 +74,13 @@ export class TemplateEditComponent implements OnInit {
     });
   }
 
-  createColumn(): FormGroup {
+  createEmptyColumns(length: number) {
+    const maxColumns = 4;
+    const emptyCount = maxColumns - length;
+    return Array(emptyCount > 0 ? emptyCount : 0);
+  }
+
+  createColumn() {
     return this.fb.group({
       type: ['text'],
       content: [''],
@@ -86,15 +95,15 @@ export class TemplateEditComponent implements OnInit {
     });
   }
 
-  get headerColumns(): FormArray {
+  get headerColumns() {
     return this.templateForm.get('header') as FormArray;
   }
 
-  get footerColumns(): FormArray {
+  get footerColumns() {
     return this.templateForm.get('footer') as FormArray;
   }
 
-  get watermarkGroup(): FormGroup {
+  get watermarkGroup() {
     return this.templateForm.get('watermark') as FormGroup;
   }
 

@@ -197,6 +197,13 @@ ion-card-title {
   ion-card-header {
     padding: 0 15px;
 
+    ion-row {
+      >ion-col:nth-child(2) {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
     ion-grid {
       margin: 0;
 
@@ -207,8 +214,17 @@ ion-card-title {
         }
 
         ion-col:nth-child(2) {
+          position: relative;
           display: flex;
           justify-content: end;
+          padding-right: 40px;
+
+          ion-button {
+            font-size: 18px;
+            position: absolute;
+            right: -10px;
+            top: -8px;
+          }
 
           ion-segment-button {
             height: 28px !important;

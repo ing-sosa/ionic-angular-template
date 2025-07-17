@@ -11,7 +11,7 @@
 
   <ion-card class="editor-header">
     <ion-card-header>
-      <ion-card-title>Configuración de Plantilla</ion-card-title>
+      <ion-card-title>Configuración de plantilla</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
@@ -40,12 +40,23 @@
   <ion-card>
     <ion-card-content>
       <ion-grid>
-        <ion-row>
+        <ion-row class="card-cols-pdf">
           <ion-col size="6">
             <ion-card-header>
-              <ion-card-title>Header</ion-card-title>
+              <ion-row>
+                <ion-col>
+                  <ion-card-title>Encabezado</ion-card-title>
+                </ion-col>
+                <ion-col>
+                  <ion-button size="small" color="primary">
+                    <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                    Agregar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+
             </ion-card-header>
-            <ion-card class="card-cols-pdf">
+            <ion-card>
               <ion-card-header>
                 <ion-grid>
                   <ion-row>
@@ -61,6 +72,10 @@
                           <ion-label>Imagen</ion-label>
                         </ion-segment-button>
                       </ion-segment>
+
+                      <ion-button size="small" fill="clear" color="danger">
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                      </ion-button>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -106,9 +121,20 @@
           </ion-col>
           <ion-col size="6">
             <ion-card-header>
-              <ion-card-title>Footer</ion-card-title>
+              <ion-row>
+                <ion-col>
+                  <ion-card-title>Pïe de página</ion-card-title>
+                </ion-col>
+                <ion-col>
+                  <ion-button size="small" color="primary">
+                    <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                    Agregar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+
             </ion-card-header>
-            <ion-card class="card-cols-pdf">
+            <ion-card>
               <ion-card-header>
                 <ion-grid>
                   <ion-row>
@@ -124,6 +150,10 @@
                           <ion-label>Imagen</ion-label>
                         </ion-segment-button>
                       </ion-segment>
+
+                      <ion-button size="small" fill="clear" color="danger">
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                      </ion-button>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -165,7 +195,9 @@
                 </ion-grid>
               </ion-card-content>
             </ion-card>
+
           </ion-col>
+
         </ion-row>
       </ion-grid>
     </ion-card-content>
